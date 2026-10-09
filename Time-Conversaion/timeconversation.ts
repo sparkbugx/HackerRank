@@ -34,6 +34,8 @@ function timeConversion(s: string): string {
     // Write your code here
     const modifier = s.slice(-2)
     const time = s.slice(0,-2)
+    console.log(modifier)
+    console.log(time)
 
     const [hours, minutes, seconds] = time.split(':');
     let hourNum= parseInt(hours, 10)
@@ -58,3 +60,6 @@ function main() {
 
     ws.end();
 }
+
+
+console.log(timeConversion('07:05:45PM'))
