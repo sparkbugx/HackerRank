@@ -33,30 +33,9 @@ function readLine(): string {
  */
 
 function pmix(s: string, k: number): string {
-
-    const values: {[key: string]: number } = {
-        'A':0,
-        'B': 1,
-        'C': 2,
-        'D': 3
-    };
-    let proteins = s.split('').map(letter => values[letter])
-    const n = proteins.length
-    let newState = new Array(n);
-
-    for (let i = 0; i < n; i++){
-        let nextRight = (i + 1 ) % n ;
-        newState[i] = proteins[i] ^ proteins[nextRight];
-    }
-    proteins = newState;
-
-    let actualStateInLetters = proteins.map(num => toCharm[num].join(''));
-    console.log('State of the second', actualStateInLetters);
+    // Write your code here
 
 }
-const finalString = proteins.map(num => toChar[num]).join('')
-return finalString;
-
 
 function main() {
     const ws: WriteStream = createWriteStream(process.env['OUTPUT_PATH']);
@@ -75,8 +54,3 @@ function main() {
 
     ws.end();
 }
-
-console.log('The new Simulatiaon is On')
-const result = pmix('AAAAD', 15)
-console.log("Simulation Ended")
-console.log(result)

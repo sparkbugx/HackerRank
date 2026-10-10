@@ -58,3 +58,5 @@ DDDAD
 AADDA
 ADADA
 DDDDA
+
+https://www.hackerrank.com/challenges/pmix/problem
