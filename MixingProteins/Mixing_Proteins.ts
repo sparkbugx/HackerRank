@@ -33,7 +33,12 @@ function readLine(): string {
  */
 
 function pmix(s: string, k: number): string {
-    // Write your code here
+    const values: {[key: string]: number } = {
+        'A': 0,
+        'B': 1,
+        'C': 2,
+        'D': 3
+    }
 
 }
 
