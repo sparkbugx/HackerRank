@@ -40,25 +40,32 @@ function pmix(s: string, k: number): string {
         'D': 3
     };
     const toChar = ['A', 'B', 'C', 'D'];
+    const n = s.length;
+    let proteins = new Int8Array(n);
 
-    let proteins = s.split('').map(letter => values [letter]);
-    const n = proteins.length;
-
-    for(let segundo = 0; segundo < k; segundo++){
-        let newState = new Array(n);
-        for(let i = 0; i < n; i ++){
-            let nextright = (i+1)% n;
-            newState[i] = proteins[i] ^ proteins[nextright];
-        }
-        proteins = newState;
-        //this will print the second state of toCharm a tochar
-        let actualStateInLetters = proteins.map(num => toChar[num]).join('');
-        console.log(`Estado en el segundo ${segundo + 1}:`, actualStateInLetters);
+    for(let i = 0; i < n; i++){
+        proteins[i] = values[s[i]];
     }
-    const finalString = proteins.map(num => toChar [num]).join('')
-    return finalString;
-
+    let jump = 1;
+    while(k > 0){
+        if(k % 2 === 1){
+            let newState = new Int8Array(n);
+            for(let i = 0; i < n; i++){
+                let nextRight = (i + jump) % n;
+                newState[i] = proteins[i] ^ proteins[nextRight]
+            }
+            proteins = newState;
+        }
+        jump = (jump * 2) % n;
+        k = Math.floor(k/2);
+    }
+    let resultChars = new Array(n);
+    for(let i= 0; i < n; i++){
+        resultChars[i] = toChar[proteins[i]];
+    }
+    return resultChars.join('');
 }
+
 
 function main() {
     const ws: WriteStream = createWriteStream(process.env['OUTPUT_PATH']);
@@ -77,3 +84,5 @@ function main() {
 
     ws.end();
 }
+
+console.log(pmix('AAAAD',15))
