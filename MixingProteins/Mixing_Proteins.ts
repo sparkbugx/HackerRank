@@ -38,7 +38,25 @@ function pmix(s: string, k: number): string {
         'B': 1,
         'C': 2,
         'D': 3
+    };
+    const toChar = ['A', 'B', 'C', 'D'];
+
+    let proteins = s.split('').map(letter => values [letter]);
+    const n = proteins.length;
+
+    for(let segundo = 0; segundo < k; segundo++){
+        let newState = new Array(n);
+        for(let i = 0; i < n; i ++){
+            let nextright = (i+1)% n;
+            newState[i] = proteins[i] ^ proteins[nextright];
+        }
+        proteins = newState;
+        //this will print the second state of toCharm a tochar
+        let actualStateInLetters = proteins.map(num => toChar[num]).join('');
+        console.log(`Estado en el segundo ${segundo + 1}:`, actualStateInLetters);
     }
+    const finalString = proteins.map(num => toChar [num]).join('')
+    return finalString;
 
 }
 
@@ -59,4 +77,3 @@ function main() {
 
     ws.end();
 }
- ///new
