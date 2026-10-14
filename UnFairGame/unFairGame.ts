@@ -23,7 +23,7 @@ function readLine(): string {
     return inputLines[currentLine++];
 }
 
-/*
+https://www.novex.com.gt/producto/438783/Maceta-plastica-para-plantas-de-tomate.html/*
  * Complete the 'unfairGame' function below.
  *
  * The function is expected to return an INTEGER.
@@ -52,3 +52,5 @@ function main() {
 
     ws.end();
 }
+
+//need further info
