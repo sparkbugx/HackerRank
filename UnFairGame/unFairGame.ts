@@ -23,17 +23,62 @@ function readLine(): string {
     return inputLines[currentLine++];
 }
 
-https://www.novex.com.gt/producto/438783/Maceta-plastica-para-plantas-de-tomate.html/*
- * Complete the 'unfairGame' function below.
- *
- * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY s as parameter.
- */
 
 function unfairGame(s: number[]): number {
-    // Write your code here
+    const N = s.length;
+    const NUM_STATES = 1 << (N + 1);
+    let dp = new Float64Array(NUM_STATES);
+    dp.fill(Infinity);
+    dp[0] = 0
+
+    for(let b = 30; b>= 0; b--){
+        const bitVal = Math.pow(2, b)
+        for(let i = 0; i < N; i++){
+            const nextDp = new Float64Array(NUM_STATES)
+            nextDp.fill(Infinity);
+            const orig = (s[i] >> b) & 1;
+            for(let state = 0; state < NUM_STATES; state++){
+                const curVal = dp[state];
+                if(curVal === Infinity) continue;
+                const p = state >> N;
+                const mask = state & ((1 << N) - 1);
+                const isFree = (mask >> i) & 1;
+
+                for(let c = 0; c <= 1; c ++){
+                    if(!isFree && orig === 1 && c === 0) continue;
+
+                    const cost = (c - orig) * bitVal;
+                    const nextP = p ^ c;
+                    let nextMask = mask;
+
+                    if(!isFree && orig === 0 && c ===1){
+                        nextMask |= (1<< i);
+                    }
+                    const nextState = (nextP << N )| nextMask;
+                    if(curVal + cost < nextDp[nextState]){
+                        nextDp[nextState] =  curVal + cost;
+                    }
+                }
+            }
+            dp= nextDp;
+        }
+        for(let state = 0; state < NUM_STATES; state ++){
+            if((state >> N ) === 1){
+                dp[state] = Infinity;
+            }
+        }
+    }
+    let minAdditions = Infinity;
+    for(let mask = 0; mask < (1 << N ); mask++){
+        if(dp[mask] < minAdditions){
+            minAdditions = dp[mask];
+        }
+    }
+    return minAdditions
 
 }
+
+
 
 function main() {
     const ws: WriteStream = createWriteStream(process.env['OUTPUT_PATH']);
