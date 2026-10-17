@@ -31,8 +31,11 @@ function readLine(): string {
  */
 
 function simpleArraySum(ar: number[]): number {
-    // Write your code here
-
+   let total = 0;
+   for(let i = 0; i < ar.length; i++){
+       total += ar[i]
+   }
+    return total
 }
 
 function main() {
@@ -48,5 +51,3 @@ function main() {
 
     ws.end();
 }
- addre
-// New proble
