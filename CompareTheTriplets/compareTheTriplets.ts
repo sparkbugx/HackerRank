@@ -33,7 +33,17 @@ function readLine(): string {
  */
 
 function compareTriplets(a: number[], b: number[]): number[] {
+    let aliceScore : number = 0;
+    let bobScore : number = 0;
 
+    for(let i: number = 0; i < a.length; i++){
+        if( a[i] > b[i]){
+            aliceScore += 1;
+        }else if(a[i]< b[i]){
+            bobScore += 1
+        }
+    }
+    return [aliceScore, bobScore]
 }
 
 function main() {
