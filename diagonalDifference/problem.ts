@@ -31,7 +31,16 @@ function readLine(): string {
  */
 
 function diagonalDifference(arr: number[][]): number {
-    // Write your code here
+    const n: number = arr.length;
+    let sumaPrincipal: number = 0;
+    let sumaSecundaria: number = 0;
+
+    for(let i: number = 0; i < n; i++){
+        sumaPrincipal += arr[i][i]
+        sumaSecundaria += arr[i][n - 1 - i]
+    }
+    const diferencia: number = sumaPrincipal - sumaSecundaria
+    return Math.abs(diferencia)
 
 }
 
