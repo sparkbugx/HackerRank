@@ -42,5 +42,6 @@ function main() {
     staircase(n);
 }
 //Rejected
+/]/sdf
 
 //time zone
