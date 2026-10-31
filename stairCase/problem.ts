@@ -42,3 +42,5 @@ function main() {
     staircase(n);
 }
 //Rejected
+
+//time zone
