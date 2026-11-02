@@ -1,91 +1,54 @@
 
-HackerRank Home
-|
-Prepare
-Certify
-Compete
-Search
 
-2
-|
-Switch to..
+# 🧮 Mini-Max Sum - HackerRank Solution
 
-PrepareAlgorithmsWarmupMini-Max Sum
-Mini-Max Sum
-234 more points to get your next star!
-Rank: 989683|Points: 241/475
-Problem Solving
-Problem
-Submissions
-Leaderboard
-Discussions
-Editorial
-HackerRank Logo
-|
-PrepareAlgorithmsWarmupMini-Max Sum
-Exit Full Screen View
-Problem	Submissions	Leaderboard	Discussions	Editorial
+![Difficulty: Easy](https://img.shields.io/badge/Difficulty-Easy-brightgreen)
+![Language: TypeScript](https://img.shields.io/badge/Language-TypeScript-blue)
+![Category: Algorithms](https://img.shields.io/badge/Category-Algorithms-orange)
+
+## 📝 Problem Description
+
 Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. Then print the respective minimum and maximum values as a single line of two space-separated long integers.
 
-Example
+**Example:**
+`arr = [1, 3, 5, 7, 9]`
+* The minimum sum is `1 + 3 + 5 + 7 = 16`
+* The maximum sum is `3 + 5 + 7 + 9 = 24`
+* **Output:** `16 24`
 
-The minimum sum is  and the maximum sum is . The function prints
+---
 
-16 24
-Function Description
+## 💻 TypeScript Solution
 
-Complete the  function with the following parameter(s):
-
-: an array of  integers
-Print
-
-Print two space-separated integers on one line: the minimum sum and the maximum sum of  of  elements.No value should be returned.
-
-Note For some languages, like C, C++, and Java, the sums may require that you use a long integer due to their size.
-
-Input Format
-
-A single line of five space-separated integers.
-
-Constraints
-
-
-Sample Input
-
-1 2 3 4 5
-Sample Output
-
-10 14
-Explanation
-
-The numbers are , , , , and . Calculate the following sums using four of the five integers:
-
-Sum everything except , the sum is .
-Sum everything except , the sum is .
-Sum everything except , the sum is .
-Sum everything except , the sum is .
-Sum everything except , the sum is .
-Hints: Beware of integer overflow! Use a 64-bit integer to store the sums.
-
-Need help to get started? Try the Solve Me First problem.
-
-Language
-TypeScript
-More
-1234567891011121314151617181920212223242526272829303132333435
-'use strict';
-
-process.stdin.resume();
-process.stdin.setEncoding('utf-8');
-
-let inputString: string = '';
-let inputLines: string[] = [];
-let currentLine: number = 0;
-
-process.stdin.on('data', function(inputStdin: string): void {
-…}
-
-Line: 42 Col: 1
-
-Test against custom input
-BlogScoringEnvironmentFAQAbout UsHelpdeskCareersTerms Of ServicePrivacy Policy
+```typescript
+function miniMaxSum(arr: number[]): void {
+    let totalSum: number = 0;
+    
+    // Initialize min and max with the first element of the array
+    let minVal: number = arr[0];
+    let maxVal: number = arr[0];
+    
+    // Loop through the array to calculate the total sum, min, and max values
+    for (let i = 0; i < arr.length; i++) {
+        let currentNumber: number = arr[i];
+        
+        totalSum += currentNumber;
+        
+        // Update minimum value if a smaller number is found
+        if (currentNumber < minVal) {
+            minVal = currentNumber;
+        }
+        
+        // Update maximum value if a larger number is found
+        if (currentNumber > maxVal) {
+            maxVal = currentNumber;
+        }
+    }
+    
+    // Calculate the minimum and maximum possible sums
+    let minSum: number = totalSum - maxVal;
+    let maxSum: number = totalSum - minVal;
+    
+    // Print the results as space-separated integers
+    console.log(`${minSum} ${maxSum}`);
+}
